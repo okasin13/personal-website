@@ -1,20 +1,105 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-    </head>
-    <title> phonee's page</title>
-    <body bgcolor="#ADD8E6">
-        <h1>Welcome to phonee's page!</h1>
-        <p>My name is <b>Erik</b> and this my page to share anything and whatever. <i>Currently a WIP.</i></p>
-        <a href="https://www.instagram.com/erik_etr/">My Instagram</a>
-        <br/>
-        <img src="https://scontent-hou1-1.xx.fbcdn.net/v/t39.30808-6/492452410_1799329760823053_8393891442181514342_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Sw8XA5kgGNEQ7kNvwEnvdH-&_nc_oc=Adl5b6-o_Fs6zmGYw_ziDLEiEbrXPvc_Dk8oZpsoiZ59vVNMXuLmIOezbDoSlolUFDvqBXU2ovvu5G6cOYp8UjzZ&_nc_zt=23&_nc_ht=scontent-hou1-1.xx&_nc_gid=xMr1PcrI7w-2sS5HxR-tqA&oh=00_AfiIOXQ0pHcIP9e1eQY3lZKxorZj2PkRDZmOy3U_9-FSvg&oe=69247A51" />
-        <div class="card" data-tilt
-        data-tilt-glare></div>
+    <title>phonee's page</title>
 
-        <script src="vanilla-tilt.js"></script>
-    <p>Last updated: June 12, 2024</p>
-    </body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+          background: #ADD8E6;
+          margin: 20px;
+          font-family: sans-serif;
+        }
+
+        .card-section {
+          display: flex;
+          justify-content: center;
+          margin-top: 30px;
+        }
+
+        .card-container {
+          perspective: 1000px;
+        }
+
+        .card {
+          width: 350px;
+          position: relative;
+          transform-style: preserve-3d;
+          border-radius: 15px;
+          overflow: hidden;
+          cursor: pointer;
+        }
+
+        /* Pokémon card image */
+        .card img {
+          display: block;
+          width: 100%;
+          border-radius: 15px;
+        }
+
+        /* HOLO SHINE OVERLAY */
+        .shine {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          mix-blend-mode: screen;
+          background: 
+            linear-gradient(
+              115deg,
+              rgba(255, 0, 150, 0.25) 0%,
+              rgba(0, 210, 255, 0.25) 25%,
+              rgba(255, 255, 0, 0.25) 50%,
+              rgba(0, 255, 150, 0.25) 75%,
+              rgba(255, 0, 150, 0.25) 100%
+            );
+          opacity: 0;
+          transition: opacity 0.3s ease, transform 0.2s ease;
+        }
+
+        .card:hover .shine {
+          opacity: 0.5;
+          transform: translateX(-10%) translateY(-10%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Welcome to phonee's page!</h1>
+    <p>My name is <b>Erik</b> and this my page to share anything and whatever. <i>Currently a WIP.</i></p>
+
+    <a href="https://www.instagram.com/erik_etr/">My Instagram</a>
+    <br><br>
+
+    <img src="https://static.wikia.nocookie.net/pokemon/images/5/50/Mew_inside_a_bubble.png/revision/latest/scale-to-width-down/1000?cb=20150201231838" width="250" />
+
+    <div class="card-section">
+        <div class="card-container">
+            <div class="card">
+                <img src="https://dz3we2x72f7ol.cloudfront.net/expansions/paldean-fates/en-us/SV4pt5_EN_232.png">
+                <div class="shine"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- VanillaTilt JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+
+    <!-- Initialize the tilt -->
+    <script>
+        VanillaTilt.init(document.querySelector(".card"), {
+            max: 15,
+            speed: 300,
+            glare: true,
+            "max-glare": 0.2
+        });
+    </script>
+
+</body>
 </html>
