@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cover Flow Demo with Flip Music</title>
+  <style>
+    :root{
+      --item-width: 220px;
+      --item-gap: 40px;
+      --max-rotate: 55deg;
+      --scale-center: 1.1;
+      --transition: 400ms cubic-bezier(.2,.9,.2,1);
+    }
+    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;background:#0b1220;color:#fff}
+    .coverflow-wrap{width:min(1100px,94vw);padding:36px}
+    .coverflow{position:relative;height:320px;perspective:1200px;display:flex;align-items:center;justify-content:center;overflow:visible;user-select:none;}
+    .track{position:relative;display:flex;align-items:center;transform-style:preserve-3d;transition:transform var(--transition);height:100%;}
+
+    .item{
+      position:absolute;left:50%;top:50%;width:var(--item-width);height:var(--item-width);
+      margin-left:calc(-1*var(--item-width)/2);margin-top:calc(-1*var(--item-width)/2);
+      cursor:pointer;
+      transition: transform var(--transition);
+      transform-style: preserve-3d;
+    }
+
+    .card-inner{
+      width:100%;
+      height:100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .item.center .card-inner.flipped{
+      transform: rotateY(180deg);
+      z-index: 999;
+    }
+
+    .card-front, .card-back{
+      position:absolute;
+      width:100%;
+      height:100%;
+      border-radius:8px;
+      backface-visibility:hidden;
+      overflow:hidden;
+      box-shadow:0 10px 20px rgba(2,6,23,0.6);
+    }
+    .card-front img{width:100%;height:100%;object-fit:cover;display:block;}
+    .card-back{
+      transform: rotateY(180deg);
+      background:#161a2b;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      padding:12px;
+    }
+
+    .music-controls{display:flex;gap:10px;align-items:center;margin-top:10px;}
+    .music-controls button{background:#2a2f45;border:none;color:#fff;padding:6px 10px;border-radius:4px;cursor:pointer;}
+    .music-controls input[type=range]{width:100px;}
+
+    .caption{position:absolute;bottom:-46px;left:50%;transform:translateX(-50%);font-size:14px;color:#cfe;opacity:.95}
+    .controls{display:flex;gap:12px;justify-content:center;margin-top:22px}
+    button.nav{background:#161a2b;border:0;color:#fff;padding:10px 14px;border-radius:6px;cursor:pointer}
+    @media (max-width:720px){:root{--item-width:150px;--item-gap:28px} .coverflow{height:240px}}
+  </style>
+</head>
+<body>
+  <div class="coverflow-wrap">
+    <div id="coverflow" class="coverflow">
+      <div class="track" id="track">
+        <!-- Item 0 -->
+        <div class="item" data-index="0">
+          <div class="card-inner">
+            <div class="card-front"><img src="https://picsum.photos/seed/1/600" alt="Album 1"><span class="caption">Album 1</span></div>
+            <div class="card-back">
+              <p>Album 1 Controls</p>
+              <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" id="audio0"></audio>
+              <div class="music-controls">
+                <button class="play">▶</button>
+                <button class="pause">⏸</button>
+                <input type="range" class="seek" min="0" max="100" value="0">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Item 1 -->
+        <div class="item" data-index="1">
+          <div class="card-inner">
+            <div class="card-front"><img src="https://picsum.photos/seed/2/600" alt="Album 2"><span class="caption">Album 2</span></div>
+            <div class="card-back">
+              <p>Album 2 Controls</p>
+              <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" id="audio1"></audio>
+              <div class="music-controls">
+                <button class="play">▶</button>
+                <button class="pause">⏸</button>
+                <input type="range" class="seek" min="0" max="100" value="0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="nav" id="prev">◀</button>
+      <button class="nav" id="next">▶</button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const track = document.getElementById('track');
+      const items = Array.from(track.children);
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+      const config = {gap:40,itemW:220,maxRotate:55,zDepth:140};
+      let index = Math.floor(items.length/2);
+
+      function render(){
+        items.forEach((el,i)=>{
+          const offset = i - index;
+          const sign = Math.sign(offset);
+          const abs = Math.abs(offset);
+          const tx = offset*(config.itemW + config.gap);
+          let tz = -abs*20;
+          let scale = 1 - Math.min(.25, abs*0.06);
+          let rotateY = -sign*Math.min(config.maxRotate, abs*14);
+          if(i===index){ tz=config.zDepth; scale=1.1; rotateY=0; el.classList.add('center'); } else { el.classList.remove('center'); }
+          el.style.transform = `translateX(${tx}px) translateZ(${tz}px) rotateY(${rotateY}deg) scale(${scale})`;
+          el.style.zIndex = i===index?100:50-abs;
+        });
+      }
+
+      function clampIdx(n){ return Math.max(0, Math.min(items.length-1, n)); }
+      nextBtn.addEventListener('click', ()=>{ index=clampIdx(index+1); render(); });
+      prevBtn.addEventListener('click', ()=>{ index=clampIdx(index-1); render(); });
+
+      // Flip center item and music controls
+      items.forEach((el,i)=>{
+        const inner = el.querySelector('.card-inner');
+        const audio = el.querySelector('audio');
+        const playBtn = el.querySelector('.play');
+        const pauseBtn = el.querySelector('.pause');
+        const seek = el.querySelector('.seek');
+
+        el.addEventListener('click',(e)=>{
+          if(!el.classList.contains('center')) return; // only flip center
+          inner.classList.toggle('flipped');
+        });
+        playBtn.addEventListener('click',(e)=>{ e.stopPropagation(); audio.play(); });
+        pauseBtn.addEventListener('click',(e)=>{ e.stopPropagation(); audio.pause(); });
+        audio.addEventListener('timeupdate',()=>{ if(audio.duration) seek.value=(audio.currentTime/audio.duration)*100; });
+        seek.addEventListener('input',(e)=>{ audio.currentTime=(seek.value/100)*audio.duration; });
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
