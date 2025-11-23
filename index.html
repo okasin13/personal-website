@@ -2,75 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>phonee's page</title>
 
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        body {
-          background: #ADD8E6;
-          margin: 20px;
-          font-family: sans-serif;
-        }
-
-        .card-section {
-          display: flex;
-          justify-content: center;
-          margin-top: 30px;
-        }
-
-        .card-container {
-          perspective: 1000px;
-        }
-
-        .card {
-          width: 350px;
-          position: relative;
-          transform-style: preserve-3d;
-          border-radius: 15px;
-          overflow: hidden;
-          cursor: pointer;
-        }
-
-        /* Pokémon card image */
-        .card img {
-          display: block;
-          width: 100%;
-          border-radius: 15px;
-        }
-
-        /* HOLO SHINE OVERLAY */
-        .shine {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          mix-blend-mode: screen;
-          background: 
-            linear-gradient(
-              115deg,
-              rgba(255, 0, 150, 0.25) 0%,
-              rgba(0, 210, 255, 0.25) 25%,
-              rgba(255, 255, 0, 0.25) 50%,
-              rgba(0, 255, 150, 0.25) 75%,
-              rgba(255, 0, 150, 0.25) 100%
-            );
-          opacity: 0;
-          transition: opacity 0.3s ease, transform 0.2s ease;
-        }
-
-        .card:hover .shine {
-          opacity: 0.5;
-          transform: translateX(-10%) translateY(-10%);
-        }
-    </style>
+    <!-- Your external stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
 
-    <h1>Welcome to phonee's page!</h1>
+<body>
+    <header class="site-header">
+      <h1 class ="site-title">
+          <a href=" /" class="site-title-link">phonee's page</a>
+      </h1>
+    </header>
     <p>My name is <b>Erik</b> and this my page to share anything and whatever. <i>Currently a WIP.</i></p>
 
     <a href="https://www.instagram.com/erik_etr/">My Instagram</a>

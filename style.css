@@ -1,61 +1,78 @@
-*{
+/* Reset */
+* {
     margin: 0;
     padding: 0;
 }
 
+/* Body styling */
 body {
-  background: #ADD8E6;
-  margin: 20px;
-  font-family: sans-serif;
+    color: white;
+    background: #020614;
+    margin: 20px;
+    font-family: 'Press Start 2P', monospace;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+    text-align: center;
 }
 
+/* Page title */
+.site-title {
+    font-size: 64px;
+    font-family: 'Pixel Operator', "MS UI Gothic", "MS Gothic", monospace;
+    margin-bottom: 2rem;
+    grid-column: 2;
+    text-align: center;
+    justify-self: center;
+    font-weight: bold;
+}
+
+/* Card layout */
 .card-section {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .card-container {
-  perspective: 1000px; 
+    perspective: 1000px;
 }
 
 .card {
-  width: 350px;
-  height: auto;
-  position: relative;
-  transform-style: preserve-3d;
-  border-radius: 15px;
-  overflow: hidden;
-  cursor: pointer;
+    width: 350px;
+    position: relative;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-/* Pokémon card image */
 .card img {
-  display: block;
-  width: 100%;
-  border-radius: 15px;
+    display: block;
+    width: 100%;
+    border-radius: 15px;
 }
 
-/* HOLO SHINE OVERLAY */
+/* Holographic shine overlay */
 .shine {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  background: 
-    linear-gradient(
-      115deg,
-      rgba(255, 0, 150, 0.25) 0%,
-      rgba(0, 210, 255, 0.25) 25%,
-      rgba(255, 255, 0, 0.25) 50%,
-      rgba(0, 255, 150, 0.25) 75%,
-      rgba(255, 0, 150, 0.25) 100%
-    );
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.2s ease;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background:
+        linear-gradient(
+            115deg,
+            rgba(255, 0, 150, 0.25) 0%,
+            rgba(0, 210, 255, 0.25) 25%,
+            rgba(255, 255, 0, 0.25) 50%,
+            rgba(0, 255, 150, 0.25) 75%,
+            rgba(255, 0, 150, 0.25) 100%
+        );
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
 .card:hover .shine {
-  opacity: 0.5;
-  transform: translateX(-10%) translateY(-10%);
+    opacity: 0.5;
+    transform: translateX(-10%) translateY(-10%);
 }
