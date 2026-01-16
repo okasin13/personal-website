@@ -56,6 +56,25 @@
     </div>
   </section>
 
+  <!-- Window: Last.fm -->
+<section class="window" data-title="Last.fm" style="top: 240px; left: 820px; width: 360px;">
+  <div class="windowHeader">
+    <strong>Last.fm</strong>
+    <div class="windowControls">
+      <button class="winbtn winmin" title="Minimize">_</button>
+      <button class="winbtn winmax" title="Maximize">▢</button>
+      <button class="winbtn winclose" title="Close">✕</button>
+    </div>
+  </div>
+
+  <div class="wincontent">
+    <div class="lastfm">
+      <div class="lastfm-title">Recently played</div>
+      <div id="lastfm-track" class="lastfm-track">Loading…</div>
+    </div>
+  </div>
+</section>
+
   <!-- Window: steamhappy -->
   <section class="window" data-title="steamhappy" style="top: 350px; left: 1160px; width: 360px;">
     <div class="windowHeader">
@@ -113,6 +132,7 @@
 
 <!-- Window system JS -->
 <script src="windows.js"></script>
+<script src="lastfm.js"></script>
 
 <!-- Your tilt init (keep it) -->
 <script>
