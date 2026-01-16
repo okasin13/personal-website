@@ -15,39 +15,128 @@
 
 <body>
     <header class="site-header">
-      <h1 class ="site-title">
-          <a href=" /" class="site-title-link">phonee's page</a>
-      </h1>
-    </header>
-    <p>My name is <b>Erik</b> and this my page to share anything and whatever. <i>Currently a WIP.</i></p>
+  <h1>
+    <a href="index.html" class="site-title">phonee</a>
+  </h1>
+</header>
 
-    <a href="https://www.instagram.com/erik_etr/">My Instagram</a>
-    <br><br>
-
-    <img src="https://static.wikia.nocookie.net/pokemon/images/5/50/Mew_inside_a_bubble.png/revision/latest/scale-to-width-down/1000?cb=20150201231838" width="250" />
-
-    <div class="card-section">
-        <div class="card-container">
-            <div class="card">
-                <img src="https://dz3we2x72f7ol.cloudfront.net/expansions/paldean-fates/en-us/SV4pt5_EN_232.png">
-                <div class="shine"></div>
-            </div>
-        </div>
+<div id="desktop">
+  <!-- Window: About -->
+  <section class="window active" data-title="About" style="top: 120px; left: 80px; width: 420px;">
+    <div class="windowHeader">
+      <strong>About</strong>
+      <div class="windowControls">
+        <button class="winbtn winmin" title="Minimize">_</button>
+        <button class="winbtn winmax" title="Maximize">▢</button>
+        <button class="winbtn winclose" title="Close">✕</button>
+      </div>
     </div>
+    <div class="wincontent">
+      <p>My name is <b>Erik</b> and this my page to share anything and whatever. <i>Currently a WIP.</i></p>
+      <a href="https://www.instagram.com/erik_etr/">My Instagram</a>
+    </div>
+  </section>
 
+  <!-- Window: Mew -->
+  <section class="window" data-title="Mew" style="top: 180px; left: 1460px; width: 360px;">
+    <div class="windowHeader">
+      <strong>Bubble Mew!!!</strong>
+      <div class="windowControls">
+        <button class="winbtn winmin" title="Minimize">_</button>
+        <button class="winbtn winmax" title="Maximize">▢</button>
+        <button class="winbtn winclose" title="Close">✕</button>
+      </div>
+    </div>
+    <div class="wincontent" style="text-align:center;">
+      <img
+        src="https://static.wikia.nocookie.net/pokemon/images/5/50/Mew_inside_a_bubble.png/revision/latest/scale-to-width-down/1000?cb=20150201231838"
+        width="250"
+        alt="Mew"
+      />
+    </div>
+  </section>
 
-    <!-- VanillaTilt JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+  <!-- Window: steamhappy -->
+  <section class="window" data-title="steamhappy" style="top: 350px; left: 1160px; width: 360px;">
+    <div class="windowHeader">
+      <strong>steamhappy</strong>
+      <div class="windowControls">
+        <button class="winbtn winmin" title="Minimize">_</button>
+        <button class="winbtn winmax" title="Maximize">▢</button>
+        <button class="winbtn winclose" title="Close">✕</button>
+      </div>
+    </div>
+    <div class="wincontent" style="text-align:center;">
+      <img
+        src="steamhappy.gif"
+        width="250"
+        alt="steamhappy"
+      />
+    </div>
+  </section>
 
-    <!-- Initialize the tilt -->
-    <script>
-        VanillaTilt.init(document.querySelector(".card"), {
-            max: 15,
-            speed: 300,
-            glare: true,
-            "max-glare": 0.2
-        });
-    </script>
+  <!-- Window: Cards -->
+  <section class="window" data-title="Cards" style="top: 360px; left: 140px; width: 620px;">
+    <div class="windowHeader">
+      <strong></strong>
+      <div class="windowControls">
+        <button class="winbtn winmin" title="Minimize">_</button>
+        <button class="winbtn winmax" title="Maximize">▢</button>
+        <button class="winbtn winclose" title="Close">✕</button>
+      </div>
+    </div>
+    <div class="wincontent">
+      <div class="card-section" style="margin-top:0;">
+        <div class="card-container">
+          <div class="card">
+            <img src="https://dz3we2x72f7ol.cloudfront.net/expansions/paldean-fates/en-us/SV4pt5_EN_232.png" alt="">
+            <div class="shine"></div>
+          </div>
+        </div>
+
+        <div class="card-container" style="margin-left:24px;">
+          <div class="card">
+            <img src="https://dz3we2x72f7ol.cloudfront.net/expansions/paldean-fates/en-us/SV4pt5_EN_233.png" alt="">
+            <div class="shine"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Taskbar -->
+  <div id="taskbar"></div>
+</div>
+
+<!-- Keep your VanillaTilt include -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+
+<!-- Window system JS -->
+<script src="windows.js"></script>
+
+<!-- Your tilt init (keep it) -->
+<script>
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const rotateY = ((x / rect.width) - 0.5) * 30;
+      const rotateX = -((y / rect.height) - 0.5) * 30;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+      const shine = card.querySelector(".shine");
+      shine.style.setProperty("--mx", x + "px");
+      shine.style.setProperty("--my", y + "px");
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
+  });
+</script>
 
 </body>
 </html>

@@ -7,7 +7,7 @@
 /* Body styling */
 body {
     color: white;
-    background: #020614;
+    background: #000000;
     margin: 20px;
     font-family: 'Press Start 2P', monospace;
     -webkit-font-smoothing: none;
@@ -20,11 +20,33 @@ body {
 .site-title {
     font-size: 64px;
     font-family: 'Pixel Operator', "MS UI Gothic", "MS Gothic", monospace;
+    text-decoration: none !important;
+    color: white !important;
     margin-bottom: 2rem;
-    grid-column: 2;
+    grid-column: 1 / -1;
     text-align: center;
     justify-self: center;
     font-weight: bold;
+}
+
+.site-title:hover {
+  text-shadow:
+    0 0 4px #00ffee,
+    0 0 8px #00ffee,
+    0 0 16px #00ffee,
+    0 0 32px #00ffee,
+    0 0 64px #00ffee,
+    0 0 128px #00ffee;
+  color: #c8ffff;
+  transform: scale(1.08);
+}
+
+.site-header {
+    display: grid;
+    grid-template-columns: var(--col-1) var(--col-2) var(--col-3);
+    gap: var(--grid-gap);
+    max-width: var(--grid-max);
+    margin: 2rem auto 0;
 }
 
 /* Card layout */
@@ -39,7 +61,7 @@ body {
 }
 
 .card {
-    width: 350px;
+    width: 250px;
     position: relative;
     transform-style: preserve-3d;
     border-radius: 15px;
@@ -75,4 +97,140 @@ body {
 .card:hover .shine {
     opacity: 0.5;
     transform: translateX(-10%) translateY(-10%);
+}
+
+/* ===== Desktop / Window system ===== */
+#desktop{
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* taskbar */
+#taskbar{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 10px;
+  box-sizing: border-box;
+
+  background: rgba(0,0,0,0.6);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+}
+
+.taskbar-btn{
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.taskbar-btn.active{
+  background: rgba(255,255,255,0.18);
+}
+
+.taskbar-btn.minimized{
+  opacity: 0.75;
+}
+
+.site-title::after {
+  content: "_";
+  margin-left: 6px;
+  color: #ffffff;
+  animation: blink 1s steps(1) infinite;
+}
+
+/* blink animation */
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* windows */
+.window{
+  position: absolute;
+  border: 2px solid rgba(255,255,255,0.25);
+  background: rgba(40, 40, 40, 0.75);
+  backdrop-filter: blur(8px);
+  color: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+}
+
+.window.hidden{
+  display: none;
+}
+
+.windowHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  cursor: default;
+
+  background: rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.windowHeader strong{
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.windowControls{
+  display: flex;
+  gap: 8px;
+}
+
+.winbtn{
+  width: 28px;
+  height: 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.10);
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.winbtn:hover{
+  background: rgba(255,255,255,0.18);
+}
+
+.winbtn.winclose:hover{
+  background: rgba(255, 80, 80, 0.45);
+  border-color: rgba(255, 80, 80, 0.6);
+}
+
+.wincontent{
+  padding: 14px;
+  max-height: calc(100vh - 44px - 60px); /* leaves room for taskbar */
+  overflow: auto;
+}
+
+/* maximize */
+.window.maximized{
+  top: 10px !important;
+  left: 10px !important;
+  right: 10px !important;
+  bottom: 54px !important; /* above taskbar */
+  width: auto !important;
+  height: auto !important;
 }
