@@ -1,3 +1,5 @@
+console.log("windows.js DEPLOY MARKER: 2026-01-17-1");
+
 (() => {
   const desktop = document.getElementById("desktop");
   const taskbar = document.getElementById("taskbar");
