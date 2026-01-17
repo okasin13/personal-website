@@ -276,3 +276,55 @@ body {
   text-shadow: 0 0 10px rgba(0,255,238,0.35);
 }
 
+/* Easter egg modal */
+.eggOverlay{
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: rgba(0,0,0,0.75);
+  z-index: 20000; /* above taskbar/windows */
+  padding: 20px;
+}
+
+.eggOverlay.show{
+  display: grid;
+}
+
+.eggModal{
+  width: min(900px, calc(100vw - 40px));
+  background: rgba(20,20,20,0.9);
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.eggClose{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.10);
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.eggClose:hover{
+  background: rgba(255, 80, 80, 0.45);
+  border-color: rgba(255, 80, 80, 0.6);
+}
+
+.eggVideo{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 140px);
+  background: black;
+}

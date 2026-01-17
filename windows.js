@@ -173,6 +173,58 @@ console.log("windows.js DEPLOY MARKER: 2026-01-17-1");
   win.style.top  = top + "px";
 }
 
+function showEasterEgg() {
+  const overlay = document.getElementById("eggOverlay");
+  const video = document.getElementById("eggVideo");
+  const closeBtn = document.getElementById("eggClose");
+  if (!overlay || !video || !closeBtn) return;
+
+  overlay.classList.add("show");
+  overlay.setAttribute("aria-hidden", "false");
+
+  // try to play; if autoplay is blocked, user can press play (controls are shown)
+  video.currentTime = 0;
+  const p = video.play();
+  if (p && typeof p.catch === "function") p.catch(() => {});
+  
+  const hide = () => {
+    video.pause();
+    overlay.classList.remove("show");
+    overlay.setAttribute("aria-hidden", "true");
+  };
+
+  // close button
+  closeBtn.onclick = hide;
+
+  // click outside the modal closes
+  overlay.onclick = (e) => {
+    if (e.target === overlay) hide();
+  };
+
+  // ESC closes
+  document.addEventListener("keydown", function onKey(e) {
+    if (e.key === "Escape") {
+      hide();
+      document.removeEventListener("keydown", onKey);
+    }
+  });
+}
+
+function checkAllClosed() {
+  const allClosed = windows.every(w => w.dataset.closed === "true");
+  if (allClosed) showEasterEgg();
+}
+
+function close(win) {
+  win.classList.add("hidden");
+  win.dataset.closed = "true";
+  const btn = taskbar.querySelector(`[data-win="${win.dataset.winId}"]`);
+  if (btn) btn.remove();
+
+  checkAllClosed(); // <-- add this
+}
+
+
 // after your windows are initialized:
 windows.forEach(clampToViewport);
 

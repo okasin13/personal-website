@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Your external stylesheet -->
-    <link rel="stylesheet" href="style.css?v=20260117_1">
+    <link rel="stylesheet" href="style.css?v=9">
 </head>
 
 
@@ -51,6 +51,7 @@
       <p>2026-01-15: Site created and hosted</i></p>
       <p>2026-01-16: imood + lastfm implementation</i></p>
       <p>2026-01-17: website scaling fix</i></p>
+      <p>2026-01-17: added easter egg :D</i></p>
     </div>
   </section>
 
@@ -212,6 +213,17 @@
     </div>
   </section>
 
+  <!-- Easter egg video modal -->
+<div id="eggOverlay" class="eggOverlay" aria-hidden="true">
+  <div class="eggModal" role="dialog" aria-label="Easter egg video">
+    <button id="eggClose" class="eggClose" type="button" title="Close">✕</button>
+
+    <video id="eggVideo" class="eggVideo" controls preload="metadata" playsinline>
+      <source src="hydrate.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
   <!-- Taskbar -->
   <div id="taskbar"></div>
 </div>
@@ -220,7 +232,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
 <!-- Window system JS -->
-<script src="windows.js?v=20260117_1"></script>
+<script src="windows.js?v=9" defer></script>
 <script src="lastfm.js"></script>
 
 <!-- Your tilt init (keep it) -->
