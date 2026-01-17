@@ -73,19 +73,70 @@ body {
   transition: background 0.15s ease, transform 0.15s ease;
 }
 
-.social-link img {
+.social-link img:not(.site-button) {
   width: 18px;
   height: 18px;
   image-rendering: pixelated;
 }
 
-.social-link:hover {
+.social-link:not(.button-only):hover {
   background: rgba(255, 255, 255, 0.08);
   transform: translateX(2px);
 }
 
 .social-link:active {
   transform: translateX(1px);
+}
+
+.site-button {
+  width: 88px;
+  height: 31px;
+}
+
+
+
+.button-only{
+  position: relative;
+  width: fit-content;
+  margin: 10px auto;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.button-tooltip{
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 6px);
+  transform: translateX(-50%);
+
+  z-index: 99999;
+
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.button-only:hover .button-tooltip,
+.button-only:focus-visible .button-tooltip{
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.friend-button {
+  margin-top: 8px;
 }
 
 
@@ -215,6 +266,12 @@ body {
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+}
+
+.window[data-title="Friends"] .wincontent{
+  overflow: visible;
+  max-height: none;
+  height: auto;
 }
 
 .window[data-title="Changelog"] .wincontent {

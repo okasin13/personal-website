@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Your external stylesheet -->
-    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="style.css?v=14">
 </head>
 
 
@@ -75,10 +75,37 @@
   <span>Venmo</span>
 </a>
 
-
-
     </div>
+
   </section>
+
+ <!-- Window: Friends -->
+<section class="window active" data-title="Friends" style="top: 480px; left: 820px; width: 260px;">
+  <div class="windowHeader">
+    <strong>Friends</strong>
+    <div class="windowControls">
+      <button class="winbtn winmin" title="Minimize">_</button>
+      <button class="winbtn winmax" title="Maximize">▢</button>
+      <button class="winbtn winclose" title="Close">✕</button>
+    </div>
+  </div>
+
+  <div class="wincontent">
+    <p><b>My Friends</b></p>
+    <div class="friend-button">
+      <a href="https://ghostk.id/" target="_blank" rel="noopener">
+        <img src="https://ghostk.id/i/88x31.gif" width="88" height="31" alt="ghostk.id button">
+      </a>
+    </div>
+
+    <p><b>Link Me</b></p>
+    <div class="social-link button-copy button-only" role="button" tabindex="0">
+      <img src="button88x31.gif" alt="okasin.to button (click to copy)" class="site-button">
+      <span class="button-tooltip">click to copy</span>
+    </div>
+  </div>
+</section>
+
 
   <!-- Window: Changelog -->
   <section class="window active" data-title="Changelog" style="top: 620px; left: clamp(20px, 68vw, 1360px); width: min(520px, calc(100vw - 40px));">
@@ -276,7 +303,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
 <!-- Window system JS -->
-<script src="windows.js?v=10" defer></script>
+<script src="windows.js?v=11" defer></script>
 <script src="lastfm.js"></script>
 
 <!-- Your tilt init (keep it) -->

@@ -289,4 +289,34 @@ window.addEventListener("resize", () => {
   windows.forEach(clampToViewport);
 });
 
+
+const buttonHTML = `<a href="https://okasin.to/"><img src="https://okasin.to/button88x31.gif" width="88" height="31" alt="https://okasin.to button"></a>`;
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".button-copy");
+  if (!btn) return;
+
+  navigator.clipboard.writeText(buttonHTML).then(() => {
+    const label = btn.querySelector("span");
+    const original = label.textContent;
+
+    label.textContent = "Copied to clipboard!";
+    btn.classList.add("copied");
+
+    setTimeout(() => {
+      label.textContent = original;
+      btn.classList.remove("copied");
+    }, 1400);
+  });
+});
+
+// keyboard accessibility (Enter / Space)
+document.addEventListener("keydown", (e) => {
+  if ((e.key === "Enter" || e.key === " ") && document.activeElement?.classList.contains("button-copy")) {
+    e.preventDefault();
+    document.activeElement.click();
+  }
+});
+
+
 })();
