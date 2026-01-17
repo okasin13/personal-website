@@ -7,6 +7,8 @@ console.log("windows.js DEPLOY MARKER: 2026-01-17-1");
 
   let zTop = 100;
   //let drag = null;
+  let closedWindowsSnapshot = [];
+
 
   function bringToFront(win) {
     zTop += 1;
@@ -34,6 +36,8 @@ console.log("windows.js DEPLOY MARKER: 2026-01-17-1");
     // hide taskbar button too
     const btn = taskbar.querySelector(`[data-win="${win.dataset.winId}"]`);
     if (btn) btn.remove();
+
+    checkAllClosed(); // <-- add this
   }
 
   function restore(win) {
@@ -188,10 +192,57 @@ function showEasterEgg() {
   if (p && typeof p.catch === "function") p.catch(() => {});
   
   const hide = () => {
-    video.pause();
-    overlay.classList.remove("show");
-    overlay.setAttribute("aria-hidden", "true");
-  };
+  video.pause();
+  overlay.classList.remove("show");
+  overlay.hidden = true;
+  overlay.setAttribute("aria-hidden", "true");
+
+  restoreWindows();
+};
+
+function ensureTaskbarButton(win) {
+  const existing = taskbar.querySelector(`[data-win="${win.dataset.winId}"]`);
+  if (existing) return existing;
+
+  const title = win.getAttribute("data-title") || `Window ${win.dataset.winId}`;
+
+  const btn = document.createElement("button");
+  btn.className = "taskbar-btn";            // <-- styling (important) :contentReference[oaicite:3]{index=3}
+  btn.textContent = title;
+  btn.dataset.win = win.dataset.winId;
+  taskbar.appendChild(btn);
+
+  btn.addEventListener("click", () => {
+    const isHidden = win.classList.contains("hidden");
+    const isMin = win.dataset.minimized === "true";
+    const isClosed = win.dataset.closed === "true";
+
+    if (isClosed) return;
+    if (isHidden && isMin) {
+      restore(win);
+    } else {
+      if (win.classList.contains("active")) minimize(win);
+      else bringToFront(win);
+    }
+  });
+
+  return btn;
+}
+
+
+function restoreWindows() {
+  closedWindowsSnapshot.forEach(win => {
+    win.classList.remove("hidden");
+    win.dataset.closed = "false";
+    win.dataset.minimized = "false";
+
+    ensureTaskbarButton(win); // <-- makes a real working styled button
+  });
+
+  closedWindowsSnapshot = [];
+}
+
+
 
   // close button
   closeBtn.onclick = hide;
@@ -212,8 +263,14 @@ function showEasterEgg() {
 
 function checkAllClosed() {
   const allClosed = windows.every(w => w.dataset.closed === "true");
-  if (allClosed) showEasterEgg();
+
+  if (allClosed) {
+    // store snapshot so we can restore later
+    closedWindowsSnapshot = [...windows];
+    showEasterEgg();
+  }
 }
+
 
 function close(win) {
   win.classList.add("hidden");

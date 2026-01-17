@@ -44,11 +44,18 @@ body {
 }
 
 .site-header {
-    display: grid;
-    grid-template-columns: var(--col-1) var(--col-2) var(--col-3);
-    gap: var(--grid-gap);
-    max-width: var(--grid-max);
-    margin: 2rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center overall group */
+  gap: 30px;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.header-gif {
+  width: 88px;      /* tweak size as you like */
+  height: auto;
+  image-rendering: pixelated;
 }
 
 /* Card layout */
