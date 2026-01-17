@@ -4,7 +4,7 @@
   const windows = Array.from(document.querySelectorAll(".window"));
 
   let zTop = 100;
-  let drag = null;
+  //let drag = null;
 
   function bringToFront(win) {
     zTop += 1;
@@ -92,6 +92,7 @@
     if (maxBtn) maxBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleMaximize(win); });
 
     // drag by header
+    /*
     const header = win.querySelector(".windowHeader");
     if (header) {
       header.addEventListener("pointerdown", (e) => {
@@ -137,8 +138,44 @@
         header.style.cursor = "grab";
       });
     }
+      */
   });
 
   // Start with the last window active (like the example site)
   if (windows.length) bringToFront(windows[windows.length - 1]);
+
+
+
+
+  function clampToViewport(win) {
+  const pad = 10;
+  const taskbarH = 54; // taskbar + a little spacing
+
+  // temporarily remove maximized sizing from calc
+  const wasMax = win.classList.contains("maximized");
+  if (wasMax) return;
+
+  const rect = win.getBoundingClientRect();
+
+  // if you used inline left/top, use those; otherwise use rect positions
+  let left = parseFloat(win.style.left || rect.left);
+  let top  = parseFloat(win.style.top  || rect.top);
+
+  const maxLeft = window.innerWidth - rect.width - pad;
+  const maxTop  = window.innerHeight - rect.height - taskbarH - pad;
+
+  left = Math.max(pad, Math.min(left, maxLeft));
+  top  = Math.max(pad, Math.min(top, maxTop));
+
+  win.style.left = left + "px";
+  win.style.top  = top + "px";
+}
+
+// after your windows are initialized:
+windows.forEach(clampToViewport);
+
+window.addEventListener("resize", () => {
+  windows.forEach(clampToViewport);
+});
+
 })();

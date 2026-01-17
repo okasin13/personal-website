@@ -103,18 +103,19 @@ body {
 #desktop{
   position: fixed;
   inset: 0;
-  overflow: hidden;
+  overflow: auto;
   padding: 20px;
+  padding-bottom: 84px; /* 44px taskbar + padding buffer */
   box-sizing: border-box;
 }
-
 /* taskbar */
 #taskbar{
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   height: 44px;
+
   display: flex;
   gap: 10px;
   align-items: center;
@@ -124,7 +125,9 @@ body {
   background: rgba(0,0,0,0.6);
   border-top: 1px solid rgba(255,255,255,0.15);
   backdrop-filter: blur(6px);
+  z-index: 9999;
 }
+
 
 .taskbar-btn{
   border: 1px solid rgba(255,255,255,0.25);
@@ -163,6 +166,8 @@ body {
 /* windows */
 .window{
   position: absolute;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 44px - 40px);
   border: 2px solid rgba(255,255,255,0.25);
   background: rgba(40, 40, 40, 0.75);
   backdrop-filter: blur(8px);
