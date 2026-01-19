@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Your external stylesheet -->
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=11">
 </head>
 
 
@@ -183,9 +183,9 @@
 
 
 <!-- Window: iMood -->
-<section class="window" data-title="iMood" style="top: 240px; left: 490px; width: 260px;">
+<section class="window" data-title="Status" style="top: 100px; left: 490px; width: 260px;">
   <div class="windowHeader">
-    <strong>iMood</strong>
+    <strong>Status</strong>
     <div class="windowControls">
       <button class="winbtn winmin" title="Minimize">_</button>
       <button class="winbtn winmax" title="Maximize">▢</button>
@@ -194,16 +194,25 @@
   </div>
 
   <div class="wincontent" style="text-align:center;">
-    <a>
-      Currently Feeling:
-    </a>
-    <a href="https://www.imood.com/users/teadrinker" target="_blank" rel="noopener">
-      <img
-        src="https://moods.imood.com/display/uname-teadrinker/fg-000000/bg-DCDCDC/imood.gif"
-        alt="The current mood of teadrinker at iMood"
-        style="image-rendering: pixelated;"
-      >
-    </a>
+    <!-- iMood section -->
+    <div class="mood-section">
+      <div class="mood-label">Currently Feeling:</div>
+      <a href="https://www.imood.com/users/teadrinker" target="_blank" rel="noopener">
+        <img
+          src="https://moods.imood.com/display/uname-teadrinker/fg-000000/bg-DCDCDC/imood.gif"
+          alt="The current mood of teadrinker at iMood"
+          style="image-rendering: pixelated;"
+        >
+      </a>
+    </div>
+
+    <hr class="mood-divider">
+
+    <!-- Status Cafe section -->
+    <div class="statuscafe-section">
+      <div id="statuscafe"><div id="statuscafe-username"></div><div id="statuscafe-content"></div></div><script src="https://status.cafe/current-status.js?name=teadrinker" defer></script>
+      </a>
+    </div>
   </div>
 </section>
 

@@ -140,6 +140,23 @@ body {
 }
 
 
+.mood-label {
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.mood-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin: 10px 0;
+}
+
+.statuscafe-section img {
+  max-width: 100%;
+}
+
+
+
 /* Card layout */
 .card-section {
     display: flex;
