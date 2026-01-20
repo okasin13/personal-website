@@ -155,7 +155,20 @@ body {
   max-width: 100%;
 }
 
+.steamhappy-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
 
+.steamhappy-slide {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  transition: width 0.25s ease, height 0.25s ease;
+}
 
 /* Card layout */
 .card-section {
@@ -293,6 +306,30 @@ body {
 
 .window[data-title="Changelog"] .wincontent {
   text-align: left;
+  max-height: 160px;    /* adjust to taste */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;     /* keeps text off the scrollbar */
+}
+
+.window.maximized[data-title="Changelog"] .wincontent{
+  max-height: none;
+  overflow: visible;
+}
+
+.window[data-title="About"] .winmax {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.window[data-title="Webring"] .winmax {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.window[data-title="Status"] .winmax {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .window.hidden{
@@ -356,6 +393,20 @@ body {
   bottom: 54px !important; /* above taskbar */
   width: auto !important;
   height: auto !important;
+}
+
+.window.maximized[data-title="steamhappy"] .steamhappy-slide {
+  width: 100%;
+  height: calc(100vh - 120px); /* fills window minus header/taskbar */
+  max-width: 100%;
+  max-height: 100%;
+  
+}
+
+.window[data-title="steamhappy"] .wincontent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lastfm {

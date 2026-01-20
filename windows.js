@@ -50,6 +50,9 @@ console.log("windows.js DEPLOY MARKER: 2026-01-17-1");
   }
 
   function toggleMaximize(win) {
+    if (win.dataset.title === "About") return;
+    if (win.dataset.title === "Webring") return;
+    if (win.dataset.title === "Status") return;
     win.classList.toggle("maximized");
     bringToFront(win);
   }
@@ -317,6 +320,7 @@ document.addEventListener("keydown", (e) => {
     document.activeElement.click();
   }
 });
+
 
 
 })();
