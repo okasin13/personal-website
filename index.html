@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Your external stylesheet -->
-    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="style.css?v=14">
 </head>
 
 
@@ -149,24 +149,31 @@
   </section>
 
 
-  <!-- Window: Mew -->
-  <section class="window" data-title="Mew" style="top: 180px; left: 1460px; width: 360px;">
-    <div class="windowHeader">
-      <strong>Bubble Mew!!!</strong>
-      <div class="windowControls">
-        <button class="winbtn winmin" title="Minimize">_</button>
-        <button class="winbtn winmax" title="Maximize">▢</button>
-        <button class="winbtn winclose" title="Close">✕</button>
+  <!-- Window: Magic 8 Ball -->
+<section class="window" data-title="Magic 8 Ball" style="top: 180px; left: 1480px; width: 320px;">
+  <div class="windowHeader">
+    <strong>Magic 8 Ball</strong>
+    <div class="windowControls">
+      <button class="winbtn winmin" title="Minimize">_</button>
+      <button class="winbtn winmax" title="Maximize">▢</button>
+      <button class="winbtn winclose" title="Close">✕</button>
+    </div>
+  </div>
+
+  <div class="wincontent eightball-content">
+    <button id="eightballBtn" class="eightball-btn" type="button" aria-label="Ask the Magic 8-Ball">
+      <img src="8ball.png" alt="Magic 8 Ball" class="eightball-img">
+
+      <!-- Text that appears inside the triangle -->
+      <div class="eightball-triangle">
+        <div id="eightballText" class="eightball-text">ASK<br>ME</div>
       </div>
-    </div>
-    <div class="wincontent" style="text-align:center;">
-      <img
-        src="Mewbubble.png"
-        width="250"
-        alt="Mew"
-      />
-    </div>
-  </section>
+    </button>
+
+    <div class="eightball-hint">click the 8-ball</div>
+  </div>
+</section>
+
 
   <!-- Window: Last.fm -->
 <section class="window" data-title="Music" style="top: 240px; left: 820px; width: 360px;">
@@ -333,6 +340,7 @@
 <script src="windows.js?v=10" defer></script>
 <script src="lastfm.js?v=11"></script>
 <script src="slideshow.js?v=10" defer></script>
+<script src="8ball.js?v=11" defer></script>
 
 <!-- Your tilt init (keep it) -->
 <script>
