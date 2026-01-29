@@ -151,33 +151,35 @@ console.log("windows.js DEPLOY MARKER: 2026-01-17-1");
   });
 
   // Start with the last window active (like the example site)
+  windows.forEach(win => {
+  if (win.dataset.startMinimized === "true") {
+    minimize(win);
+  }
+});
+
+
   if (windows.length) bringToFront(windows[windows.length - 1]);
 
 
 
 
-  function clampToViewport(win) {
+function clampToViewport(win) {
   const pad = 10;
-  const taskbarH = 54; // taskbar + a little spacing
 
-  // temporarily remove maximized sizing from calc
-  const wasMax = win.classList.contains("maximized");
-  if (wasMax) return;
+  // don’t clamp maximized windows
+  if (win.classList.contains("maximized")) return;
 
   const rect = win.getBoundingClientRect();
 
-  // if you used inline left/top, use those; otherwise use rect positions
+  // Use current left (or rect) and clamp horizontally only
   let left = parseFloat(win.style.left || rect.left);
-  let top  = parseFloat(win.style.top  || rect.top);
 
   const maxLeft = window.innerWidth - rect.width - pad;
-  const maxTop  = window.innerHeight - rect.height - taskbarH - pad;
-
   left = Math.max(pad, Math.min(left, maxLeft));
-  top  = Math.max(pad, Math.min(top, maxTop));
 
   win.style.left = left + "px";
-  win.style.top  = top + "px";
+
+  // IMPORTANT: do NOT touch win.style.top here
 }
 
 function showEasterEgg() {

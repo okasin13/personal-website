@@ -12,14 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Your external stylesheet -->
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=28">
 </head>
 
 
 <body>
     <header class="site-header">
   <h1>
-    <a href="index.html" class="site-title">phonee</a>
+    <a href="/" class="site-title">phonee</a>
+
   </h1>
   <img
     src="fat-pokemon-ball.gif"
@@ -29,10 +30,10 @@
 </header>
 
 <div id="desktop">
-  <!-- Window: About -->
-  <section class="window active" data-title="About" style="top: 20px; left: 80px; width: 420px;">
+  <!-- Window: Home -->
+  <section class="window active" data-title="Home" style="top: 20px; left: 620px; width: 620px;">
     <div class="windowHeader">
-      <strong>About</strong>
+      <strong>Home</strong>
       <div class="windowControls">
         <button class="winbtn winmin" title="Minimize">_</button>
         <button class="winbtn winmax" title="Maximize">▢</button>
@@ -40,7 +41,31 @@
       </div>
     </div>
     <div class="wincontent">
-      <p>My name is <b>Erik</b> and this my page to share anything and whatever. <i>Currently a WIP.</i></p>
+      <p>My name is <b>Erik</b> also known as phonee, okasin, bmoney and this my webpage! <i>Currently a WIP.</i></p>
+      <a href="/about" target="_blank">More about me →</a>
+
+      <!-- TEMP FILLER -->
+  <div class="home-filler">
+    <p>More coming soon…</p>
+  </div>
+</div>
+
+
+    </div>
+
+  </section>
+  
+  <!-- Window: Socials -->
+  <section class="window active" data-title="Socials" style="top: 20px; left: 80px; width: 210px;">
+    <div class="windowHeader">
+      <strong>Socials</strong>
+      <div class="windowControls">
+        <button class="winbtn winmin" title="Minimize">_</button>
+        <button class="winbtn winmax" title="Maximize">▢</button>
+        <button class="winbtn winclose" title="Close">✕</button>
+      </div>
+    </div>
+    <div class="wincontent">
       <p><b>Socials</b></p>
 
 <a class="social-link" href="https://www.instagram.com/erik_etr/" target="_blank" rel="noopener">
@@ -88,7 +113,7 @@
   </section>
 
  <!-- Window: Friends -->
-<section class="window active" data-title="Friends" style="top: 480px; left: 820px; width: 260px;">
+<section class="window active" data-title="Friends" style="top: 180px; left: clamp(20px, 75vw, 1520px); width: 260px;">
   <div class="windowHeader">
     <strong>Friends</strong>
     <div class="windowControls">
@@ -126,7 +151,7 @@
 
 
   <!-- Window: Changelog -->
-  <section class="window active" data-title="Changelog" style="top: 620px; left: clamp(20px, 68vw, 1360px); width: min(520px, calc(100vw - 40px));">
+  <section class="window active" data-title="Changelog" style="top: 830px; left: clamp(20px, 68vw, 1340px); width: min(520px, calc(100vw - 40px));">
     <div class="windowHeader">
       <strong>Changelog</strong>
       <div class="windowControls">
@@ -145,12 +170,16 @@
       <p>2026-01-19: added slides to steamhappy</i></p>
       <p>2026-01-19: added proper window expansion</i></p>
       <p>2026-01-20: updated favicon</i></p>
+      <p>2026-01-21: Magic 8 Ball</i></p>
+      <p>2026-01-28: layout revision</i></p>
+      <p>2026-01-28: added home window + linking about page</i></p>
+      <p>2026-01-28: added Featured song of the week</i></p>
     </div>
   </section>
 
 
   <!-- Window: Magic 8 Ball -->
-<section class="window" data-title="Magic 8 Ball" style="top: 180px; left: 1480px; width: 320px;">
+<section class="window" data-title="Magic 8 Ball"  data-start-minimized="false" style="top: 500px; left: 1340px; width: 320px;">
   <div class="windowHeader">
     <strong>Magic 8 Ball</strong>
     <div class="windowControls">
@@ -176,7 +205,7 @@
 
 
   <!-- Window: Last.fm -->
-<section class="window" data-title="Music" style="top: 240px; left: 820px; width: 360px;">
+<section class="window" data-title="Music" style="top: 390px; left: 80px; width: 380px;">
   <div class="windowHeader">
     <strong>Listening to:</strong>
     <div class="windowControls">
@@ -194,10 +223,49 @@
   </div>
 </section>
 
+<!-- Window: Featured Song -->
+<section
+  class="window active"
+  data-title="Featured Song"
+  style="top: 570px; left: 80px; width: 470px;"
+>
+  <div class="windowHeader">
+    <strong>Featured Song</strong>
+    <div class="windowControls">
+      <button class="winbtn winmin" title="Minimize">_</button>
+      <button class="winbtn winmax" title="Maximize">▢</button>
+      <button class="winbtn winclose" title="Close">✕</button>
+    </div>
+  </div>
+
+  <div class="wincontent featured-song">
+    <div class="song-label">This Week's Featured Song</div>
+    <div class="song-video">
+      <!-- replace VIDEO_ID later -->
+      <iframe
+        src="https://www.youtube.com/embed/cwtw_f1fqkU"
+        title="Featured Song"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="song-info">
+      <div class="song-title">Square (2017) – Yerin Baek</div>
+
+      <p class="song-description">
+        This song is coming on 10 years old now, where has the time gone? I still love this song to this day, Yerin Baek has such a beautiful voice and this song really showcases her talent.
+      </p>
+    </div>
+  </div>
+</section>
+
+
 
 
 <!-- Window: iMood -->
-<section class="window" data-title="Status" style="top: 100px; left: 490px; width: 260px;">
+<section class="window" data-title="Status" style="top: 20px; left: 300px; width: 260px;">
   <div class="windowHeader">
     <strong>Status</strong>
     <div class="windowControls">
@@ -275,7 +343,7 @@
 
 
   <!-- Window: steamhappy -->
-  <section class="window" data-title="steamhappy" style="top: 350px; left: 1160px; width: 360px;">
+  <section class="window" data-title="steamhappy" style="top: 1020px; left: 80px; width: 470px;">
     <div class="windowHeader">
       <strong>steamhappy</strong>
       <div class="windowControls">
@@ -290,9 +358,9 @@
   </section>
 
   <!-- Window: Cards -->
-  <section class="window" data-title="Cards" style="top: 405px; left: 140px; width: 620px;">
+  <section class="window" data-title="Cards" data-start-minimized="false" style="top: 900px; left: 640px; width: 620px;">
     <div class="windowHeader">
-      <strong></strong>
+      <strong>Featured Cards</strong>
       <div class="windowControls">
         <button class="winbtn winmin" title="Minimize">_</button>
         <button class="winbtn winmax" title="Maximize">▢</button>
@@ -337,7 +405,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
 <!-- Window system JS -->
-<script src="windows.js?v=10" defer></script>
+<script src="windows.js?v=18" defer></script>
 <script src="lastfm.js?v=11"></script>
 <script src="slideshow.js?v=10" defer></script>
 <script src="8ball.js?v=11" defer></script>
