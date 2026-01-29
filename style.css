@@ -163,8 +163,8 @@ body {
 }
 
 .steamhappy-slide {
-  width: 200px;
-  height: 200px;
+  width: 440px;
+  height: 300px;
   object-fit: contain;
   image-rendering: pixelated;
 }
