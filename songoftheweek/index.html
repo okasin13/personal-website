@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=2" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=2" />
+
+  <title>Song of the Week – phonee</title>
+  <link rel="stylesheet" href="/style.css?v=28" />
+</head>
+
+<body class="about-body">
+  <header class="site-header">
+    <h1><a href="/" class="site-title">phonee</a></h1>
+    <img src="/fat-pokemon-ball.gif" alt="Pokeball" class="header-gif" />
+  </header>
+
+  <main class="about-shell">
+    <section class="window about-window active" data-title="Song of the Week">
+      <div class="windowHeader">
+        <strong>Featured Song of the week archive</strong>
+        <div class="windowControls">
+          <!-- on subpages these can just be “cosmetic” -->
+          <button class="winbtn winmin" title="Minimize">_</button>
+          <button class="winbtn winmax" title="Maximize">▢</button>
+          <button class="winbtn winclose" title="Close" onclick="location.href='/'">✕</button>
+        </div>
+      </div>
+
+      <div class="wincontent sow-content">
+        <!--description-->
+        <div class="sow-description">
+          <p>Here is an archive of all the featured songs on my homepage. Each week I pick a new song entry that I enjoy and want to share with others. Feel free to explore the list and discover some new music!</p>
+
+        <div class="sow-list">
+
+          <!-- ENTRY -->
+          <article class="sow-entry">
+            <div class="sow-date">2026-01-28</div>
+
+            <button class="sow-row" type="button" aria-expanded="false">
+              <img class="sow-art" src="albumart/square.png" alt="Album art" />
+              <div class="sow-info">
+                <div class="sow-title">Square (2017)</div>
+                <div class="sow-artist">Yerin Baek</div>
+                <div class="sow-links">
+                  <a href="https://www.youtube.com/watch?v=cwtw_f1fqkU" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+                    YouTube →
+                  </a>
+                </div>
+              </div>
+            </button>
+
+            <div class="sow-desc" hidden>
+              This song is coming on 10 years old now, where has the time gone? Yerin Baek has such a beautiful voice and this song really showcases her talent. Fun fact - this was an unreleased track that was only performed live until she released it on her 2019 album "Every Letter I Sent You".
+            </div>
+          </article>
+
+          <hr class="sow-divider" />
+
+          <!-- ENTRY -->
+           <!---
+          <article class="sow-entry">
+            <div class="sow-date">2026-01-21</div>
+
+            <button class="sow-row" type="button" aria-expanded="false">
+              <img class="sow-art" src="/images/album-placeholder.png" alt="Album art" />
+              <div class="sow-info">
+                <div class="sow-title">Song Title</div>
+                <div class="sow-artist">Artist</div>
+                <div class="sow-links">
+                  <a href="https://www.youtube.com/" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+                    YouTube →
+                  </a>
+                </div>
+              </div>
+            </button>
+
+            <div class="sow-desc" hidden>
+              Why I picked it… (fill in later)
+            </div>
+          </article>
+        -->
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/songoftheweek/songoftheweek.js?v=1" defer></script>
+</body>
+</html>
