@@ -24,6 +24,7 @@ console.log("windows.js DEPLOY MARKER: 2026-01-17-1");
   }
 
   function minimize(win) {
+    rememberWindowPosition(win);
     win.classList.add("hidden");
     win.dataset.minimized = "true";
     const btn = taskbar.querySelector(`[data-win="${win.dataset.winId}"]`);
@@ -31,6 +32,7 @@ console.log("windows.js DEPLOY MARKER: 2026-01-17-1");
   }
 
   function close(win) {
+    rememberWindowPosition(win);
     win.classList.add("hidden");
     win.dataset.closed = "true";
     // hide taskbar button too
@@ -182,6 +184,79 @@ function clampToViewport(win) {
   // IMPORTANT: do NOT touch win.style.top here
 }
 
+function rememberRelativePosition(win) {
+  // don't record maximized windows
+  if (win.classList.contains("maximized")) return;
+
+  const rect = win.getBoundingClientRect();
+
+  // store as ratios of viewport (0..1)
+  win.dataset.relLeft = (rect.left / window.innerWidth).toString();
+
+  // rect.top is viewport-relative; add scrollY to convert to document position
+  win.dataset.relTop = ((rect.top + window.scrollY) / window.innerHeight).toString();
+}
+
+function applyRelativePosition(win) {
+  if (win.classList.contains("maximized")) return;
+
+  const pad = 10;
+
+  const relLeft = parseFloat(win.dataset.relLeft);
+  const relTop = parseFloat(win.dataset.relTop);
+
+  if (!Number.isFinite(relLeft) || !Number.isFinite(relTop)) return;
+
+  // compute desired positions from ratios
+  let left = relLeft * window.innerWidth;
+  let top = (relTop * window.innerHeight) - window.scrollY; // back to viewport-ish, then to absolute below
+
+  // convert top to document coordinates
+  top = top + window.scrollY;
+
+  // apply
+  win.style.left = `${left}px`;
+  win.style.top = `${top}px`;
+
+  // clamp horizontally (and optionally vertically)
+  const rect = win.getBoundingClientRect();
+
+  const maxLeft = window.innerWidth - rect.width - pad;
+  left = Math.max(pad, Math.min(parseFloat(win.style.left), maxLeft));
+  win.style.left = `${left}px`;
+
+  const maxTop = window.scrollY + window.innerHeight - rect.height - (44 + pad); // 44px taskbar
+  top = Math.max(window.scrollY + pad, Math.min(parseFloat(win.style.top), maxTop));
+  win.style.top = `${top}px`;
+}
+
+function rememberWindowPosition(win) {
+  // store absolute document top (px) so it can return even if off-screen
+  const rect = win.getBoundingClientRect();
+  win.dataset.absTop = String(rect.top + window.scrollY);
+
+  // store left as viewport ratio so it stays “relatively” similar horizontally
+  win.dataset.relLeft = String(rect.left / window.innerWidth);
+}
+
+function applyWindowPosition(win) {
+  // restore absolute top exactly
+  const absTop = parseFloat(win.dataset.absTop);
+  if (Number.isFinite(absTop)) {
+    win.style.top = absTop + "px";
+  }
+
+  // restore left relatively, then clamp horizontally (your existing clampToViewport does this)
+  const relLeft = parseFloat(win.dataset.relLeft);
+  if (Number.isFinite(relLeft)) {
+    win.style.left = (relLeft * window.innerWidth) + "px";
+  }
+
+  clampToViewport(win); // clamps LEFT only; leaves TOP untouched :contentReference[oaicite:1]{index=1}
+}
+
+
+
 function showEasterEgg() {
   const overlay = document.getElementById("eggOverlay");
   const video = document.getElementById("eggVideo");
@@ -288,10 +363,11 @@ function close(win) {
 
 
 // after your windows are initialized:
+windows.forEach(rememberWindowPosition);
 windows.forEach(clampToViewport);
 
 window.addEventListener("resize", () => {
-  windows.forEach(clampToViewport);
+  windows.forEach(rememberWindowPosition);
 });
 
 
