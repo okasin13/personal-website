@@ -511,6 +511,22 @@ body {
   opacity: 0.75;
 }
 
+.webring-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin: 12px 0;
+}
+
+.radioring img {
+  width: 260px;        /* match window width */
+  max-width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  display: block;
+  margin: 0 auto;
+}
+
+
 
 .eightball-content{
   display: flex;
