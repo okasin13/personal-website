@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=2">
+
+  <title>guestbook – phonee</title>
+
+  <link rel="stylesheet" href="/style.css?v=36">
+  <script src="https://static.webweav.ing/guestbook-latest.js" defer></script>
+</head>
+
+<body class="about-body">
+  <header class="site-header">
+    <h1><a href="/" class="site-title">phonee</a></h1>
+    <img src="/fat-pokemon-ball.gif" alt="Pokeball" class="header-gif">
+  </header>
+
+  <main class="about-shell">
+  <section class="window about-window active" data-title="Guestbook">
+    <div class="windowHeader">
+      <strong>Guestbook</strong>
+      <div class="windowControls">
+        <button class="winbtn winmin" title="Minimize">_</button>
+        <button class="winbtn winmax" title="Maximize">▢</button>
+        <button class="winbtn winclose" title="Close" onclick="location.href='/'">✕</button>
+      </div>
+    </div>
+
+    <div class="wincontent about-content">
+      <!-- Webweav customization templates (drop these ABOVE guestbook-form/comments) -->
+<template id="custom-guestbook-form">
+  <style>
+    :host{
+      display:block;
+      font-family: 'Press Start 2P', monospace;
+      color: #fff;
+    }
+
+    label{
+      display:block;
+      font-size: 10px;
+      margin: 10px 0 6px;
+      opacity: 0.9;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    textarea{
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 10px;
+
+      color: white;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      line-height: 1.4;
+      outline: none;
+    }
+
+    textarea{
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    input[type="submit"],
+    button[type="submit"]{
+      width: 100%;
+      margin-top: 12px;
+      padding: 10px 12px;
+
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.10);
+      color: white;
+
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover,
+    button[type="submit"]:hover{
+      background: rgba(255,255,255,0.18);
+    }
+  </style>
+</template>
+
+<template id="custom-guestbook-comments">
+  <style>
+    :host{
+      display:block;
+      font-family: 'Press Start 2P', monospace;
+      color: #fff;
+      text-align: left;
+    }
+
+    /* container */
+    .comment-list{
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.25);
+    }
+
+    /* each entry */
+    .comment{
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+    .comment:last-child{ border-bottom: none; }
+
+    /* author/name */
+    .author,
+    .comment-author,
+    .name{
+      font-size: 11px;
+      letter-spacing: 0.3px;
+      opacity: 0.95;
+    }
+
+    /* timestamp */
+    .timestamp,
+    time{
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 9px;
+      opacity: 0.6;
+    }
+
+    /* body text */
+    .content,
+    .comment-content,
+    .body,
+    p{
+      margin-top: 8px;
+      font-size: 10px;
+      line-height: 1.6;
+      opacity: 0.9;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    /* links in comments */
+    a{
+      color: #c8ffff;
+      text-decoration: none;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+
+    .error{ color: #ff6b6b; }
+  </style>
+</template>
+
+      <div class="guestbook-layout">
+       <div class="guestbook-form-area">
+        <guestbook-form guestbook="https://webweav.ing/websites/2xbi20c2t4z/guestbook"></guestbook-form>
+
+        </div>
+
+  <hr class="guestbook-divider">
+   <div class="guestbook-comments-area">
+      <guestbook-comments guestbook="https://webweav.ing/websites/2xbi20c2t4z/guestbook"></guestbook-comments>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="/about/about-window.js?v=1" defer></script>
+
+</body>
+</html>

@@ -276,14 +276,14 @@ body {
   animation: blink 1s steps(1) infinite;
 }
 
-
+/* blink animation */
 @keyframes blink {
   0%   { opacity: 1; }
   50%  { opacity: 0; }
   100% { opacity: 1; }
 }
 
-
+/* windows */
 .window{
   position: absolute;
   max-width: calc(100vw - 40px);
@@ -298,10 +298,18 @@ body {
 }
 
 .window[data-title="Friends"] .wincontent{
-  overflow: visible;
-  max-height: none;
-  height: auto;
+  max-height: 230px;   
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px; 
 }
+
+.window[data-title="Friends"] .friend-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
 
 .window[data-title="Changelog"] .wincontent {
   text-align: left;
@@ -832,4 +840,29 @@ body {
     width: 72px;
     height: 72px;
   }
+}
+
+/* Guestbook page: keep entries from stretching the window */
+/* Make the whole guestbook window NOT scroll as a unit */
+.about-window .wincontent{
+  overflow: hidden;           /* overrides your global .wincontent scroll */
+}
+
+/* Split layout: form stays put, comments get the scroll */
+.guestbook-layout{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.guestbook-form-area{
+  flex: 0 0 auto;             /* fixed-size area (no scrolling) */
+}
+
+.guestbook-comments-area{
+  flex: 1 1 auto;             /* take remaining space */
+  overflow-y: auto;           /* <-- only comments scroll */
+  overflow-x: hidden;
+  padding-right: 6px;         /* keeps content off scrollbar */
+  min-height: 160px;          /* prevents it collapsing if window is short */
 }
