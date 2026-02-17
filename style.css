@@ -276,14 +276,14 @@ body {
   animation: blink 1s steps(1) infinite;
 }
 
-/* blink animation */
+
 @keyframes blink {
   0%   { opacity: 1; }
   50%  { opacity: 0; }
   100% { opacity: 1; }
 }
 
-/* windows */
+
 .window{
   position: absolute;
   max-width: calc(100vw - 40px);
