@@ -866,3 +866,93 @@ body {
   padding-right: 6px;         /* keeps content off scrollbar */
   min-height: 160px;          /* prevents it collapsing if window is short */
 }
+
+
+/* Subpages: make the window behave like normal document content (scrolls with page) */
+.page-scroll-windows .window{
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+  transform: none !important;
+
+  margin: 20px auto;
+}
+
+/* Let the page handle scrolling, not the window content */
+.page-scroll-windows .wincontent{
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* Don’t show drag cursor on these pages */
+.page-scroll-windows .windowHeader{
+  cursor: default;
+}
+
+/* --- Song of the Week: allow nested scrolling --- */
+
+/* Give the window a bounded height so it CAN scroll */
+.page-scroll-windows .window[data-title="Song of the Week"]{
+  height: min(80vh, 900px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Re-enable internal scrolling (overrides global subpage rule) */
+.page-scroll-windows .window[data-title="Song of the Week"] .wincontent{
+  flex: 1;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  max-height: none !important;
+  height: auto !important;
+  padding-right: 6px;
+}
+
+
+/* --- Guestbook: nested scroll (page scroll + comments scroll) --- */
+
+/* Bound the Guestbook window so there’s room for an inner scroll area */
+.page-scroll-windows .window[data-title="Guestbook"]{
+  height: min(80vh, 900px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Override the subpage rule: allow the wincontent to behave like a flex column */
+.page-scroll-windows .window[data-title="Guestbook"] .wincontent{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  /* IMPORTANT: cancel the global "overflow: visible" behavior */
+  overflow: hidden !important;
+}
+
+/* Your existing split: form fixed, comments scroll */
+.page-scroll-windows .window[data-title="Guestbook"] .guestbook-layout{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* key for nested flex scrolling */
+}
+
+.page-scroll-windows .window[data-title="Guestbook"] .guestbook-form-area{
+  flex: 0 0 auto;
+}
+
+.page-scroll-windows .window[data-title="Guestbook"] .guestbook-comments-area{
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  padding-right: 6px;
+}
+
+/* Optional: nicer nested scrolling behavior */
+.page-scroll-windows .window[data-title="Guestbook"] .guestbook-comments-area{
+  overscroll-behavior: contain;
+}
